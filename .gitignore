@@ -1,0 +1,6 @@
+notebooks/purchase-predict/
+notebooks/data
+notebooks/__marimo__
+.idea
+data
+uv.lock
