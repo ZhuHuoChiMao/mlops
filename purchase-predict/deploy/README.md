@@ -44,3 +44,5 @@ kubectl apply -f k8s/deployment.yaml
 kubectl apply -f k8s/service.yaml
 kubectl apply -f k8s/hpa.yaml
 ```
+
+For the full GKE workflow, see `deploy/GKE.md`.

@@ -9,7 +9,7 @@ conf/local/**
 # ignore potentially sensitive credentials files
 conf/**/*credentials*
 
-# ignore everything in the following folders
+# ignore data files by default
 data/**
 
 # except their sub-folders
@@ -17,6 +17,10 @@ data/**
 
 # also keep all .gitkeep files
 !.gitkeep
+
+# allow deployment artifacts needed by the API
+!data/04_feature/transform_pipeline.pkl
+!data/06_models/deployment_model.pkl
 
 # ignore kedro-viz metadata
 .viz
@@ -83,8 +87,8 @@ wheels/
 MANIFEST
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+# Usually these files are written by a python script from a template
+# before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 
@@ -159,32 +163,12 @@ venv.bak/
 .mypy_cache/
 
 # mlflow local runs
-mlruns/*
-
-.venv/
-venv/
-env/
-__pycache__/
-*.pyc
-.ipynb_checkpoints/
-
-.env
-*.env
-*.key
-*.json
-
-data/01_raw/
-data/02_intermediate/
-data/03_primary/
-data/04_feature/
-data/05_model_input/
-data/06_models/
-data/07_model_output/
-data/08_reporting/
-
 mlruns/
 mlartifacts/
 
+# VS Code
+.vscode/
+
+# OS / IDE duplicates
 .DS_Store
 .idea/
-.vscode/

@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
         - name: api
-          image: europe-west1-docker.pkg.dev/PROJECT_ID/purchase-predict/purchase-predict-api:latest
-          imagePullPolicy: IfNotPresent
+          image: europe-west1-docker.pkg.dev/project-3139c4ea-e811-47b0-aad/cloud-run-source-deploy/purchase-predict-api:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
