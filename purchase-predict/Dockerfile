@@ -5,8 +5,8 @@ WORKDIR /app
 COPY requirements.txt pyproject.toml README.md ./
 COPY conf ./conf
 COPY src ./src
-COPY data/04_feature ./data/04_feature
-COPY data/06_models ./data/06_models
+#COPY data/04_feature ./data/04_feature
+#COPY data/06_models ./data/06_models
 
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir -e .
