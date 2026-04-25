@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Any
 
 import mlflow
-import mlflow.sklearn
+import mlflow.pyfunc
 import pandas as pd
 from fastapi import FastAPI
 from kedro_datasets.pickle import PickleDataset
@@ -82,9 +82,15 @@ def health() -> dict[str, str]:
 @app.post("/predict")
 def predict(payload: PurchaseRequest) -> dict[str, float | int]:
     model = _load_model()
-    features = _prepare_features(payload)
+    features = _prepare_model_input(payload)
     probability = _predict_probability(model, features)
     return {"purchased": int(probability >= PURCHASE_THRESHOLD), "probability": probability}
+
+
+def _prepare_model_input(payload: PurchaseRequest) -> pd.DataFrame:
+    if os.getenv(MODEL_URI_ENV):
+        return pd.DataFrame([payload.model_dump()])
+    return _prepare_features(payload)
 
 
 def _load_model() -> Any:
@@ -93,7 +99,7 @@ def _load_model() -> Any:
         tracking_uri = os.getenv(MLFLOW_TRACKING_URI_ENV)
         if tracking_uri:
             mlflow.set_tracking_uri(tracking_uri)
-        return mlflow.sklearn.load_model(model_uri)
+        return mlflow.pyfunc.load_model(model_uri)
 
     artifact = _load_pickle(MODEL_PATH)
     return artifact["model"] if isinstance(artifact, dict) and "model" in artifact else artifact

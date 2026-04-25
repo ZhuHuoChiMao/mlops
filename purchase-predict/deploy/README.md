@@ -12,12 +12,28 @@ Required values for cloud deployment:
 - `_PURCHASE_MODEL_URI`: MLflow model URI, for example `models:/purchase_predict@production`.
 - `_SERVICE_ACCOUNT`: optional Cloud Run service account email.
 
+Current project values:
+
+- `PROJECT_ID=project-3139c4ea-e811-47b0-aad`
+- `_REGION=europe-west1`
+- `_ARTIFACT_REPOSITORY=cloud-run-source-deploy`
+- `_SERVICE_NAME=purchase-api`
+- `_MLFLOW_TRACKING_URI=http://104.197.20.252:5000`
+- `_PURCHASE_MODEL_URI=models:/purchase_predict@production`
+
+Register a new model version in MLflow:
+
+```bash
+uv run kedro run --env cloud
+```
+
 Cloud Build example:
 
 ```bash
 gcloud builds submit \
   --config cloudbuild.yaml \
-  --substitutions _REGION=europe-west1,_ARTIFACT_REPOSITORY=purchase-predict,_MLFLOW_TRACKING_URI=http://MLFLOW_HOST,_PURCHASE_MODEL_URI=models:/purchase_predict@production
+  --project project-3139c4ea-e811-47b0-aad \
+  --substitutions _REGION=europe-west1,_ARTIFACT_REPOSITORY=cloud-run-source-deploy,_SERVICE_NAME=purchase-api,_MLFLOW_TRACKING_URI=http://104.197.20.252:5000,_PURCHASE_MODEL_URI=models:/purchase_predict@production
 ```
 
 Kubernetes example:

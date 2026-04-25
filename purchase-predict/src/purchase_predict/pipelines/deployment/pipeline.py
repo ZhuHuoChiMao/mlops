@@ -10,10 +10,12 @@ def create_pipeline(**kwargs) -> Pipeline:
                 select_model_for_deployment,
                 [
                     "trained_model",
+                    "transform_pipeline",
                     "metrics",
                     "params:minimum_deployment_f1",
                     "params:mlflow_enabled",
                     "params:mlflow_registered_model_name",
+                    "params:mlflow_model_alias",
                     "params:mlflow_tracking_uri",
                 ],
                 "deployment_model",

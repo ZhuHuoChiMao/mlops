@@ -5,8 +5,9 @@ raw_input_pattern: part-*.csv
 minimum_deployment_f1: 0.5
 mlflow_enabled: false
 mlflow_tracking_uri:
-mlflow_experiment_name: purchase_predict
+mlflow_experiment_name: purchase_predict_gcs
 mlflow_registered_model_name: purchase_predict
+mlflow_model_alias: production
 models:
   - name: random_forest
     params:

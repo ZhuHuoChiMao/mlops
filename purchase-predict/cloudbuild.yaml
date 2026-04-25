@@ -1,10 +1,10 @@
 substitutions:
   _REGION: europe-west1
-  _ARTIFACT_REPOSITORY: purchase-predict
-  _SERVICE_NAME: purchase-predict-api
+  _ARTIFACT_REPOSITORY: cloud-run-source-deploy
+  _SERVICE_NAME: purchase-api
   _IMAGE_NAME: purchase-predict-api
-  _MLFLOW_TRACKING_URI: ""
-  _PURCHASE_MODEL_URI: ""
+  _MLFLOW_TRACKING_URI: http://104.197.20.252:5000
+  _PURCHASE_MODEL_URI: models:/purchase_predict@production
   _SERVICE_ACCOUNT: ""
 
 steps:
