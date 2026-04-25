@@ -1,6 +1,6 @@
 notebooks/purchase-predict/
-notebooks/data
+#notebooks/data
 notebooks/__marimo__
 .idea
-data
+#data
 uv.lock
